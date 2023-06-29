@@ -1,16 +1,23 @@
 import React from "react";
 
 type ButtonProps = {
-  color: string;
-  background: string;
-  text: string;
-  onLog?: () => void;
+  children: React.ReactNode;
+  onClick?: () => void;
+  primary?: boolean;
+  danger?: boolean;
 };
 
-const Button = ({color,background,text,onLog}: ButtonProps) => {
- 
+const Button = ({ children, primary, danger,onClick }: ButtonProps) => {
   return (
-  <div style={{color,background}} onClick={onLog}> {text}</div>);
+    <button
+      onClick={onClick}
+      className={`border p-2 rounded border-gray-500 ${
+        primary ? "text-white bg-blue-500 hover:bg-blue-800" : ""
+      } ${danger ? "text-white bg-red-500 hover:bg-red-800" : ""} `}
+    >
+      {children}
+    </button>
+  );
 };
 
 export default Button;

@@ -1,24 +1,30 @@
 import { useState } from "react";
 import "./App.css";
-import { Button, Hello } from "@/components";
+import { Form } from "./components";
+import List from "./components/List";
+import { ICar } from "./interfaces/car";
 
 function App() {
-  const [info] = useState({
-    name: "Anh",
-    age: 20,
-    children:[
-        {id:1,name: "Minh",age:16},
-        {id:2,name: "Linh",age:16},
-    ]
-  })
- const onHandleLog = ()=>{
-    console.log('hi button');
+  const carsData = [
+    { id: 1, name: "Car A", price: 100 },
+    { id: 2, name: "Car B", price: 200 },
+    { id: 3, name: "Car C", price: 300 },
+  ];
+  const [cars, setCars] = useState<ICar[]>(carsData);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error,setError] = useState<string>('')
+  const onHandleAddCar = (car: ICar)=>{
+    setCars([...cars, car])
+  }
+  const onHandleRemoveCar = (id:number)=>{
+    setCars(cars.filter((car)=>car.id !== id))
   }
   return (
     <>
-      <Hello name="Dat" age={30} info={info}/>
-      <Button color="fff" background="black" text="Nút 1" onLog={onHandleLog}/>
-      <Button color="fff" background="green" text="Nút 2" />
+      <div className="w-96 border border-red-500 mx-auto my-5">
+        <Form onAdd={onHandleAddCar}/>
+        <List cars={cars} onRemove={onHandleRemoveCar}/>
+      </div>
     </>
   );
 }
