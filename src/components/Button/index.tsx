@@ -1,21 +1,23 @@
 import React from "react";
 
 type ButtonProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  type?: "primary" | "danger" | "default";
   onClick?: () => void;
-  primary?: boolean;
-  danger?: boolean;
+  icon?: React.ReactNode;
 };
 
-const Button = ({ children, primary, danger,onClick }: ButtonProps) => {
+const Button = ({ type, children, onClick,icon }: ButtonProps) => {
+  console.log(icon);
+  
   return (
     <button
       onClick={onClick}
       className={`border p-2 rounded border-gray-500 ${
-        primary ? "text-white bg-blue-500 hover:bg-blue-800" : ""
-      } ${danger ? "text-white bg-red-500 hover:bg-red-800" : ""} `}
+        type === "primary" ? "text-white bg-blue-500 hover:bg-blue-800" : ""
+      } ${type === "danger" ? "text-white bg-red-500 hover:bg-red-800" : ""}`}
     >
-      {children}
+      {icon && icon}
     </button>
   );
 };
