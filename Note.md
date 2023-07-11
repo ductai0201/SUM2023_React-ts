@@ -17,3 +17,9 @@ npx tailwindcss init -p
 
 *** React Icons:
 https://react-icons.github.io/react-icons/
+
+*** React Loading skeleton:
+https://www.npmjs.com/package/react-loading-skeleton
+
+*** .env vite 
+https://vitejs.dev/guide/env-and-mode.html

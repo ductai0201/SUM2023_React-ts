@@ -11,14 +11,11 @@ const Table = ({ cars, config }: any) => {
   console.log(cars);
 
   const renderHeaders = config.map((column: any) => {
-    if (column.header) {
-      return <th>{column.header(column)}</th>;
-    }
-    return <th>{column.label}</th>;
+    return <th>{column.header ? column.header(column) : column.label}</th>;
   });
-  const renderRows = cars.map((car: ICar) => {
+  const renderRows = cars.map((car: any) => {
     const renderColumns = config.map((column: any) => {
-      return <td>{column.render(car)}</td>;
+      return <td>{column.render ? column.render(car) : car[column.key]}</td>;
     });
     return <tr>{renderColumns}</tr>;
   });
