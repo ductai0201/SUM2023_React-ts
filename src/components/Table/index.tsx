@@ -1,4 +1,4 @@
-import { ICar } from "@/interfaces/car";
+// import { ICar } from "@/interfaces/car";
 import React from "react";
 
 type TableProps = {
@@ -7,9 +7,6 @@ type TableProps = {
 };
 
 const Table = ({ cars, config }: any) => {
-  console.log(config);
-  console.log(cars);
-
   const renderHeaders = config.map((column: any) => {
     return <th>{column.header ? column.header(column) : column.label}</th>;
   });

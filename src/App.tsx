@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { Form, Table } from "./components";
+import { Counter, Form, Table } from "./components";
 import List from "./components/List";
 import { ICar } from "./interfaces/car";
 import { instance } from "./components/axios/config";
@@ -51,10 +51,10 @@ function App() {
     (async () => {
       try {
         setCars(await instance.get("/cars"));
-        setIsLoading(false);
       } catch (error: any) {
-        setIsLoading(false);
         setError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     })();
   }, []);
@@ -62,21 +62,22 @@ function App() {
   const [cars, setCars] = useState<ICar[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  
+
   const onHandleAddCar = (car: ICar) => {
     setCars([...cars, car]);
   };
   const onHandleRemoveCar = (id: number) => {
     setCars(cars.filter((car) => car.id !== id));
   };
-
+ 
   return (
     <>
       <div className="w-96 border border-red-500 mx-auto my-5">
         <Form onAdd={onHandleAddCar} />
-        <List cars={cars} onRemove={onHandleRemoveCar} loading={isLoading}/>
+        <List cars={cars} onRemove={onHandleRemoveCar} loading={isLoading} />
         <Table cars={cars} config={config} />
         <Table cars={dataPost} config={configPost} />
+        <Counter/>
       </div>
     </>
   );

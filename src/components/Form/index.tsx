@@ -12,9 +12,9 @@ const Form = ({ onAdd }: FormProps) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     form.reset();
-    if(value === '') return ''
+    if (value === "") return "";
     onAdd({ id: 5, name: value });
-    setValue('')
+    setValue("");
   };
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

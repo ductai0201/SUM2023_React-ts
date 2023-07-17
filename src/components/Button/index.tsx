@@ -8,8 +8,6 @@ type ButtonProps = {
 };
 
 const Button = ({ type, children, onClick,icon }: ButtonProps) => {
-  console.log(icon);
-  
   return (
     <button
       onClick={onClick}
