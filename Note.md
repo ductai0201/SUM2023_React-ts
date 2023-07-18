@@ -23,3 +23,8 @@ https://www.npmjs.com/package/react-loading-skeleton
 
 *** .env vite 
 https://vitejs.dev/guide/env-and-mode.html
+
+*** immer
+npm i immer
+
+*** npm i redux react-redux
